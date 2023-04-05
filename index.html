@@ -10,12 +10,93 @@
   <style>
     body {
         padding: 0;
-        background: url(images/thatsusatourwedding.jpeg) center center no-repeat;
+        margin: 0;
+        /* background: url(images/thatsusatourwedding.jpeg) center center no-repeat; */
         background-size: cover;
+        font-size: 100%;
+    }
+
+    .hero {
+        width: 100%;
+        max-width: 100%;
+        z-index: 0;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    header, main {
+        position: relative;
+        z-index: 1;
+    }
+
+    @media (max-width: 767px) {
+        .hero {
+           position: relative; 
+        }
+    }
+
+    h1 {
+        color: #fff;
+        margin: 45vw 0 20vw;
+        font-size: clamp(1.1rem, 1rem + 3.5vw, 4rem);
+        max-width: 38vw;
+    }
+
+    @media (max-width: 767px) {
+        h1 {
+            margin-top: 1.5rem;
+            color: #333;
+            max-width: 100%;
+        }
+    }
+
+    @media (max-width: 767px) {
+        header {
+            text-align: center;
+        }
     }
   </style>
+  <script>
+    $('#rsvp-form').on('submit', function (e) {
+        e.preventDefault();
+
+        $.ajax({
+            url: "https://script.google.com/macros/s/AKfycbyh8c-onp-_UEEX4oxolaxFycoxEL4JxBREeqHf3YrpH51MjVa5sgo1fSdYcaTPRku4/exec",
+            method: "POST",
+            dataType: "json",
+            data: $("#rsvp-form").serialize(),
+            success: function (response) {
+                console.log("response!");
+                console.log($("#rsvp-form").serialize());
+
+                if (response.result == "success") {
+                    $('#rsvp-form')[0].reset();
+                    alert('Thank you for contacting us.');
+                    return true;
+                } else {
+                    alert("The form was not submitted successfully. Please tell James to fix it.")
+                }
+            },
+            error: function () {
+                alert("The form failed. Please tell James to fix it.")
+            }
+        })
+    });
+</script>
 </head>
 <body>
-  <h1>James & Danielle</h1>
+    <img class="hero" src="images/thatsusatourwedding.jpeg">
+    <header>
+        <h1>James & Danielle</h1>
+    </header>
+    <main>
+        <form id="rsvp-form">
+            <label for="guestName">Your Name</label>
+            <input type="text" id="guestName" name="guestName" required="required">
+            <button class="the-big-button" type="submit">Send RSVP</button>
+        </form>
+    </main>
+    
 </body>
 </html>
