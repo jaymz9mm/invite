@@ -30,6 +30,10 @@
         z-index: 1;
     }
 
+    main {
+        margin-bottom: 10vw;
+        padding: 0 5vw;
+    }
     @media (max-width: 767px) {
         .hero {
            position: relative; 
@@ -56,37 +60,37 @@
             text-align: center;
         }
     }
+
+    label {
+        display: block;
+    }
+
+    .element {
+        margin-bottom: 1rem;
+    }
+
+    .element input {
+        width: 100%;
+    }
   </style>
-  <script
-  src="https://code.jquery.com/jquery-3.6.4.min.js"
-  integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8="
-  crossorigin="anonymous"></script>
-  <script>
-    $('#rsvp-form').on('submit', function (e) {
-        e.preventDefault();
 
-        $.ajax({
-            url: "https://script.google.com/macros/s/AKfycbyh8c-onp-_UEEX4oxolaxFycoxEL4JxBREeqHf3YrpH51MjVa5sgo1fSdYcaTPRku4/exec",
-            method: "POST",
-            dataType: "json",
-            data: $("#rsvp-form").serialize(),
-            success: function (response) {
-                console.log("response!");
-                console.log($("#rsvp-form").serialize());
+<script>
+    window.addEventListener("load", function() {
+  const form = document.getElementById('rsvp-form');
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
+    const data = new FormData(form);
+    const action = e.target.action;
+    fetch(action, {
+      method: 'POST',
+      body: data,
+    })
+    .then(() => {
+      alert("Success!");
+    })
+  });
+});
 
-                if (response.result == "success") {
-                    $('#rsvp-form')[0].reset();
-                    alert('Thank you for contacting us.');
-                    return true;
-                } else {
-                    alert("The form was not submitted successfully. Please tell James to fix it.")
-                }
-            },
-            error: function () {
-                alert("The form failed. Please tell James to fix it.")
-            }
-        })
-    });
 </script>
 </head>
 <body>
@@ -95,9 +99,15 @@
         <h1>James & Danielle</h1>
     </header>
     <main>
-        <form id="rsvp-form">
-            <label for="guestName">Your Name</label>
-            <input type="text" id="guestName" name="guestName" required="required">
+        <form id="rsvp-form" method="POST" action="https://script.google.com/macros/s/AKfycbxTuvu3q-ukTuA-VNHjq4PhVcBwZx4ITN_pQ1AY6caRY3sjrYH4AQHOC6VnURv4xwts/exec">
+            <div class="element">
+                <label for="guestName">Your Name</label>
+                <input type="text" id="guestName" name="Name" required="required">
+            </div>
+            <div class="element">
+                <label for="guestEmail">Your Email</label>
+                <input type="email" id="guestEmail" name="Email" required="required">
+            </div>
             <button class="the-big-button" type="submit">Send RSVP</button>
         </form>
     </main>
