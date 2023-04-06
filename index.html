@@ -7,13 +7,19 @@
   <meta name="description" content="" />
   <!-- <link rel="stylesheet" type="text/css" href="style.css" /> -->
   <link rel="icon" href="favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     body {
         padding: 0;
         margin: 0;
-        /* background: url(images/thatsusatourwedding.jpeg) center center no-repeat; */
         background-size: cover;
         font-size: 100%;
+    }
+
+    * {
+        box-sizing: border-box;
     }
 
     .hero {
@@ -31,25 +37,36 @@
     }
 
     main {
-        margin-bottom: 10vw;
+        margin-bottom: 5vw;
         padding: 0 5vw;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 400;
     }
+
     @media (max-width: 767px) {
         .hero {
            position: relative; 
+        }
+
+        main {
+            margin-bottom: 10vw;
         }
     }
 
     h1 {
         color: #fff;
-        margin: 45vw 0 20vw;
-        font-size: clamp(1.1rem, 1rem + 3.5vw, 4rem);
-        max-width: 38vw;
+        margin: 45vw 0 10vw 8vw;
+        font-size: clamp(1.5rem, 1rem + 4.5vw, 5rem);
+        max-width: min-content;
+        font-family: 'Great Vibes', cursive;
+        font-weight: 400;
+        line-height: 1;
+        text-align: center;
     }
 
     @media (max-width: 767px) {
         h1 {
-            margin-top: 1.5rem;
+            margin: 1.5rem 0 20vw;
             color: #333;
             max-width: 100%;
         }
@@ -63,14 +80,57 @@
 
     label {
         display: block;
+        color: #3c3c3c;
+        font-weight: 500;
+        font-size: .9rem;
+        margin-bottom: .3rem;
     }
 
     .element {
         margin-bottom: 1rem;
     }
 
-    .element input {
+    .element input, select {
         width: 100%;
+        font-family: 'Montserrat', sans-serif;
+        padding: .5rem;
+        border: 1px solid #b7b7b7;
+        border-radius: .3rem;
+    }
+
+    [type="submit"] {
+        padding: .5rem;
+        margin: .5rem 0;
+        color: #535353;
+        border: 1px solid #b7b7b7;
+        border-radius: .3rem;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 700;
+        width: 100%;
+        cursor: pointer;
+        transition: all 200ms ease;
+        background-color: #bbff99;
+        background: linear-gradient(131deg, #bbff99, #ffec99, #ff9999);
+        background-size: 600% 600%;
+    }
+
+    @keyframes AnimationName {
+        0%{background-position:0% 50%}
+        50%{background-position:100% 50%}
+        100%{background-position:0% 50%}
+    }
+
+    [type="submit"]:hover {
+        animation: AnimationName 2s ease infinite;
+        color: #202020;
+        transition: all 200ms ease;
+    }
+
+    @media (min-width: 768px) {
+
+        [type="submit"] {
+            max-width: 30%;
+        }
     }
   </style>
 
@@ -107,6 +167,18 @@
             <div class="element">
                 <label for="guestEmail">Your Email</label>
                 <input type="email" id="guestEmail" name="Email" required="required">
+            </div>
+            <div class="element">
+                <label for="partySize">Total Guests</label>
+                <select type="email" id="partySize" name="Guests" required="required">
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
+                    <option>4</option>
+                    <option>5</option>
+                    <option>6</option>
+                    <option>7</option>
+                </select>
             </div>
             <button class="the-big-button" type="submit">Send RSVP</button>
         </form>
