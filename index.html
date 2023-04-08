@@ -5,7 +5,6 @@
   <title>James & Danielle</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="" />
-  <!-- <link rel="stylesheet" type="text/css" href="style.css" /> -->
   <link rel="icon" href="favicon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -37,10 +36,11 @@
     }
 
     main {
-        margin-bottom: 5vw;
+        margin: 0 auto 5vw;
         padding: 0 5vw;
         font-family: 'Montserrat', sans-serif;
         font-weight: 400;
+        max-width: 68ch;
     }
 
     @media (max-width: 767px) {
@@ -64,6 +64,8 @@
         text-align: center;
     }
 
+
+
     @media (max-width: 767px) {
         h1 {
             margin: 1.5rem 0 20vw;
@@ -78,6 +80,43 @@
         }
     }
 
+    @media (min-width: 768px) {
+        form {
+            padding: 1.5rem;
+            /* border-radius: .6rem; */
+            border: 1px solid #d9d9d9;
+        }
+    }
+
+    p {
+        margin-bottom: 6rem;
+        text-align: center;
+        color: #535353;
+    }
+
+    legend {
+        border: 1px solid #d9d9d9;
+        padding: .75rem;
+        background: #fff;
+        width: fit-content;
+        margin: -3rem auto 3rem;
+    }
+
+    @media (max-width: 767px) {
+
+        legend::before {
+            content: "";
+            display: block;
+            position: absolute;
+            margin-top: .65rem;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background-color: #d9d9d9;
+            z-index: -1;
+        }
+    }
+
     label {
         display: block;
         color: #3c3c3c;
@@ -87,15 +126,22 @@
     }
 
     .element {
-        margin-bottom: 1rem;
+        margin-bottom: 1.5rem;
     }
 
     .element input, select {
         width: 100%;
         font-family: 'Montserrat', sans-serif;
         padding: .5rem;
-        border: 1px solid #b7b7b7;
-        border-radius: .3rem;
+        border: 0;
+        border-bottom: 1px solid #b7b7b7;
+        /* border-radius: .3rem; */
+    }
+
+    .form-buttons {
+        display: flex;
+        justify-content: flex-end;
+        width: 100%;
     }
 
     [type="submit"] {
@@ -146,7 +192,7 @@
       body: data,
     })
     .then(() => {
-      alert("Success!");
+      alert("Thank you for your RSVP! We'll email you soon to confirm.");
     })
   });
 });
@@ -154,12 +200,14 @@
 </script>
 </head>
 <body>
-    <img class="hero" src="images/thatsusatourwedding.jpeg">
+    <img class="hero" src="images/thatsusatourwedding.jpeg" alt="Us at our wedding">
     <header>
         <h1>James & Danielle</h1>
     </header>
     <main>
+        <p>…were just married on 3.23.23 and invite you to join them for a celebration at Parlor Arcade on Sunday, May 21st 2023 at 2PM!</p>
         <form id="rsvp-form" method="POST" action="https://script.google.com/macros/s/AKfycbxTuvu3q-ukTuA-VNHjq4PhVcBwZx4ITN_pQ1AY6caRY3sjrYH4AQHOC6VnURv4xwts/exec">
+            <legend>RSVP</legend>
             <div class="element">
                 <label for="guestName">Your Name</label>
                 <input type="text" id="guestName" name="Name" required="required">
@@ -180,7 +228,9 @@
                     <option>7</option>
                 </select>
             </div>
-            <button class="the-big-button" type="submit">Send RSVP</button>
+            <div class="form-buttons">
+                <button class="the-big-button" type="submit">Send RSVP</button>
+            </div>
         </form>
     </main>
     
